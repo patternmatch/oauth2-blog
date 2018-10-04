@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +20,7 @@ public class Hello {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Welcome getUserTimeline() {
-        String who = "Seb";
-
-        return new Welcome(who);
+    public Welcome greetings(@RequestParam("name") String name) {
+        return new Welcome(name);
     }
 }
