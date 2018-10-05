@@ -1,16 +1,20 @@
 package com.patternmatch.oauth2blog;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import static junit.framework.TestCase.assertTrue;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+import org.junit.Test;
+
+import java.util.regex.Pattern;
+
 public class Oauth2BlogApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
+    @Test
+    public void test() {
+        Pattern BCRYPT_PATTERN = Pattern
+                .compile("\\A\\$2a?\\$\\d\\d\\$[./0-9A-Za-z]{53}");
 
+        String encodedPassword = "$2a$10$TvQlGVKJ0PbEZN.T63lH4u1p3i0n1LK3iOrgXTPvvUEOS5.K4cD1.";
+
+        assertTrue(BCRYPT_PATTERN.matcher(encodedPassword).matches());
+    }
 }
