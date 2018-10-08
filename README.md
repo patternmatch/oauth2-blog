@@ -35,7 +35,12 @@ In the blog post you may see that the application is being built incrementally.
 The following describes the tags corresponding to the each step of development.
 
 1. **empty-with-dependencies**
-* no authentication
-* all the project dependencies added
-* test endpoint exposed
+  * no authentication
+  * all the project dependencies added
+  * test endpoint exposed
 
+2. **in-memory-with-user-details-service**
+  * OAuth2 authentication configured
+  * using in-memory store for clients and tokens
+  * using _DelegatingPasswordEncoder_
+  * added three different ways of testing the app with spring tools
