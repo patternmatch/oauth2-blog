@@ -29,7 +29,7 @@ public class HelloMvcTest {
 
     @Test
     @WithUserDetails("user@test.com")
-    public void givenManagerUser_whenGetFooSalute_thenOk() throws Exception {
+    public void shouldAllowUserWithNoAuthorities() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/hello?name=Seb")
                 .accept(MediaType.ALL))
                 .andExpect(status().isOk())
@@ -37,7 +37,7 @@ public class HelloMvcTest {
     }
 
     @Test
-    public void givenBasicUser_whenGetFooSalute_thenForbidden() throws Exception {
+    public void shouldRejectIfNoAuthentication() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/hello?name=Seb")
                 .accept(MediaType.ALL))
                 .andExpect(status().isUnauthorized());

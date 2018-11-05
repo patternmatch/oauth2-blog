@@ -25,7 +25,7 @@ public class HelloMockUserTest {
 
     @Test
     @WithMockUser
-    public void givenManagerUser_whenGetFooSalute_thenOk() throws Exception {
+    public void shouldAllowAnyAuthenticatedUser() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/hello?name=Seb")
                 .accept(MediaType.ALL))
                 .andExpect(status().isOk())
