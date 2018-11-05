@@ -1,0 +1,44 @@
+databaseChangeLog:
+- changeSet:
+      id: oauth2 jdbc token store
+      author: sebastian
+      changes:
+      - createTable:
+            tableName: oauth_access_token
+            columns:
+            - column:
+                  name: authentication_id
+                  type: varchar(256)
+                  constraints:
+                      primaryKey: true
+                      nullable: false
+            - column:
+                  name: token_id
+                  type: varchar(256)
+            - column:
+                  name: token
+                  type: bytea
+            - column:
+                  name: user_name
+                  type: varchar(256)
+            - column:
+                  name: client_id
+                  type: varchar(256)
+            - column:
+                  name: authentication
+                  type: bytea
+            - column:
+                  name: refresh_token
+                  type: varchar(256)
+      - createTable:
+            tableName: oauth_refresh_token
+            columns:
+            - column:
+                  name: token_id
+                  type: varchar(256)
+            - column:
+                  name: token
+                  type: bytea
+            - column:
+                  name: authentication
+                  type: bytea
