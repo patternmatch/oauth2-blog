@@ -69,3 +69,7 @@ The following describes the tags corresponding to the each step of development.
   * using jdbc store for tokens
   * using embedded H2 database
   * using liquibase to manage database
+  
+4. **in-database-with-authentication-provider**
+  * using authentication provider instead of user details service
+  * injecting user name from the security context

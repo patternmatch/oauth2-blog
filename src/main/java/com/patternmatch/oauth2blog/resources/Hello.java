@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping(
         value = {"/api/hello"},
@@ -20,7 +22,7 @@ public class Hello {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public Welcome greetings(@RequestParam("name") String name) {
-        return new Welcome(name);
+    public Welcome greetings(@RequestParam("name") String name, Principal principal) {
+        return new Welcome(name + " (" + principal.getName() + ")");
     }
 }

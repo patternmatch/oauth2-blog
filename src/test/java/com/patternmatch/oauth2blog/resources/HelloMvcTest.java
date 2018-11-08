@@ -33,7 +33,7 @@ public class HelloMvcTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/hello?name=Seb")
                 .accept(MediaType.ALL))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.greetings", is("Welcome Seb!")));
+                .andExpect(jsonPath("$.greetings", is("Welcome Seb (user@test.com)!")));
     }
 
     @Test

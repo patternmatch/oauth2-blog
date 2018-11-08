@@ -24,11 +24,11 @@ public class HelloMockUserTest {
     private MockMvc mockMvc;
 
     @Test
-    @WithMockUser
+    @WithMockUser(username = "user@test.com")
     public void shouldAllowAnyAuthenticatedUser() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/hello?name=Seb")
                 .accept(MediaType.ALL))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.greetings", is("Welcome Seb!")));
+                .andExpect(jsonPath("$.greetings", is("Welcome Seb (user@test.com)!")));
     }
 }
