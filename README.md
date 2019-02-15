@@ -26,9 +26,16 @@ You can use gradle for it.
 You need any HTTP client. The following uses [HTTPie](https://github.com/jakubroztocil/httpie).
 
 First, request an authentication token.
+There are two users available.
 
+Admin user:
 ```
-http -a my-client:my-secret --form POST http://localhost:8080/oauth/token username='test@test.com' password='tester' grant_type='password'
+http -a my-client:my-secret --form POST http://localhost:8080/oauth/token username='admin1@pm.com' password='admin123' grant_type='password'
+```
+
+Regular user:
+```
+http -a my-client:my-secret --form POST http://localhost:8080/oauth/token username='user1@pm.com' password='user123' grant_type='password'
 ```
 
 You should receive an authentication token in a response. The example below.
@@ -47,8 +54,14 @@ Now, use the access_token to access the REST API.
 ```
 http http://localhost:8080/api/hello name=='Seb' access_token=='1bbea46b-93fe-4efa-b25a-eb6d5fac60c0'
 ```
-
 You should see `HTTP/1.1 200` in a response.
+
+You can also list all of the active authentication tokens. It's available only for the admin user.
+
+```
+http http://localhost:8080/admin/token/list access_token=='1bbea46b-93fe-4efa-b25a-eb6d5fac60c0'
+```
+You should receive a list in a response.
 
 ## Available tags
 In the blog post you may see that the application is being built incrementally. 
@@ -73,3 +86,8 @@ The following describes the tags corresponding to the each step of development.
 4. **in-database-with-authentication-provider**
   * using authentication provider instead of user details service
   * injecting user name from the security context
+
+5. **roles-and-admin-panel**
+  * storing users in the database
+  * configuring authorization
+  * adding administration panel
