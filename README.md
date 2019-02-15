@@ -63,6 +63,15 @@ http http://localhost:8080/admin/token/list access_token=='1bbea46b-93fe-4efa-b2
 ```
 You should receive a list in a response.
 
+You can also revoke the authentication token using the following endpoint.
+
+```
+http DELETE http://localhost:8080/oauth/revoke access_token=='1bbea46b-93fe-4efa-b25a-eb6d5fac60c0'
+```
+
+You should see `HTTP/1.1 200` in a response.
+This token will be removed and you won't be able to access the application using it.
+
 ## Available tags
 In the blog post you may see that the application is being built incrementally. 
 The following describes the tags corresponding to the each step of development.
@@ -91,3 +100,8 @@ The following describes the tags corresponding to the each step of development.
   * storing users in the database
   * configuring authorization
   * adding administration panel
+  
+6. **authentication-token-revocation**
+  * revoking OAuth2 authentication token
+  * simplifying administration panel
+  * using _UserDetailsService_
