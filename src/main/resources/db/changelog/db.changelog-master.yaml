@@ -42,3 +42,53 @@ databaseChangeLog:
             - column:
                   name: authentication
                   type: bytea
+
+- changeSet:
+      id: users store
+      author: sebastian
+      changes:
+      - createTable:
+            tableName: app_user
+            columns:
+            - column:
+                  name: user_email
+                  type: varchar(256)
+                  constraints:
+                        primaryKey: true
+                        nullable: false
+            - column:
+                  name: user_pass
+                  type: varchar(256)
+            - column:
+                    name: user_role
+                    type: varchar(256)
+
+# just for testing, it's not a good practice
+- changeSet:
+      id: insert default users
+      author: sebastian
+      changes:
+      - insert:
+            tableName: app_user
+            columns:
+            - column:
+                    name: user_email
+                    value: "admin1@pm.com"
+            - column:
+                    name: user_pass
+                    value: "admin123"
+            - column:
+                    name: user_role
+                    value: "ROLE_ADMIN"
+      - insert:
+            tableName: app_user
+            columns:
+            - column:
+                    name: user_email
+                    value: "user1@pm.com"
+            - column:
+                    name: user_pass
+                    value: "user123"
+            - column:
+                    name: user_role
+                    value: "ROLE_USER"

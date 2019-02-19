@@ -28,12 +28,20 @@ public class HelloMvcTest {
     private MockMvc mockMvc;
 
     @Test
-    @WithUserDetails("user@test.com")
-    public void shouldAllowUserWithNoAuthorities() throws Exception {
+    @WithUserDetails("user1@test.com")
+    public void shouldAllowUserWithUserRole() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/api/hello?name=Seb")
                 .accept(MediaType.ALL))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.greetings", is("Welcome Seb (user@test.com)!")));
+                .andExpect(jsonPath("$.greetings", is("Welcome Seb (user1@test.com)!")));
+    }
+
+    @Test
+    @WithUserDetails("user2@test.com")
+    public void shouldRejectUserWithNoAuthorities() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/hello?name=Seb")
+                .accept(MediaType.ALL))
+                .andExpect(status().isForbidden());
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.patternmatch.oauth2blog.config;
 
-import com.patternmatch.oauth2blog.service.DefaultAuthenticationProvider;
+import com.patternmatch.oauth2blog.repository.AppUserRepository;
+import com.patternmatch.oauth2blog.service.DefaultUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,8 +13,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private AppUserRepository userRepository;
 
     @Override
     @Bean
@@ -22,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    public void globalUserDetails(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(new DefaultAuthenticationProvider());
+    public void globalUserDetails(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(new DefaultUserDetailsService(userRepository));
     }
 }
