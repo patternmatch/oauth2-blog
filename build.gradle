@@ -35,6 +35,7 @@ dependencies {
     runtimeOnly('com.h2database:h2')
     implementation('com.google.code.gson:gson:2.8.5')
     runtimeOnly('org.liquibase:liquibase-core')
+    compile('com.amazonaws.secretsmanager:aws-secretsmanager-jdbc:1.0.2')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.springframework.security:spring-security-test')
 }
