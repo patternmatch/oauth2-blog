@@ -22,6 +22,17 @@ You can use gradle for it.
 ./gradlew clean bootRun
 ```
 
+## Available SpringBoot profiles
+There are two:
+* default - for local development, uses H2 in memory database, enabled by default
+* prod - uses AWS RDS and PostgreSQL database, also credentials are stored in AWS Secrets Manager
+
+To use this profile you need to set the following env vars:
+* AWS_DEFAULT_REGION
+* AWS_REGION
+* AWS_ACCESS_KEY_ID
+* AWS_SECRET_ACCESS_KEY
+
 ## Testing the application
 You need any HTTP client. The following uses [HTTPie](https://github.com/jakubroztocil/httpie).
 
@@ -105,3 +116,13 @@ The following describes the tags corresponding to the each step of development.
   * revoking OAuth2 authentication token
   * simplifying administration panel
   * using _UserDetailsService_
+
+7. **rds-and-aws-secrets-manager-sdk**
+  * introducing dev and prod profiles
+  * dev profile uses H2 in memory database (default)
+  * prod profile uses PostgreSQL AWS RDS database
+  * database credentials are stored and retrieved from AWS Secrets Manager 
+
+8. **rds-password-rotation**
+  * enabling password rotation in AWS Secrets Manager
+  * changes to support the rotation

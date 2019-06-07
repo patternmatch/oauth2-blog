@@ -26,3 +26,5 @@
 /.nb-gradle/
 
 .java-version
+/devops
+.DS_Store

@@ -30,9 +30,11 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-security')
     implementation('org.springframework.security.oauth:spring-security-oauth2')
     implementation('org.springframework.boot:spring-boot-starter-web')
-    runtimeOnly('org.springframework.boot:spring-boot-devtools')
+    runtimeOnly('org.postgresql:postgresql:42.2.5')
     runtimeOnly('com.h2database:h2')
+    implementation('com.google.code.gson:gson:2.8.5')
     runtimeOnly('org.liquibase:liquibase-core')
+    implementation('com.amazonaws.secretsmanager:aws-secretsmanager-jdbc:1.0.2')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
     testImplementation('org.springframework.security:spring-security-test')
 }
