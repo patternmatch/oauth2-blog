@@ -122,3 +122,7 @@ The following describes the tags corresponding to the each step of development.
   * dev profile uses H2 in memory database (default)
   * prod profile uses PostgreSQL AWS RDS database
   * database credentials are stored and retrieved from AWS Secrets Manager 
+
+8. **rds-password-rotation**
+  * enabling password rotation in AWS Secrets Manager
+  * changes to support the rotation
