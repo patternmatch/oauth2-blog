@@ -42,11 +42,13 @@ There are two users available.
 Admin user:
 ```
 http -a my-client:my-secret --form POST http://localhost:8080/oauth/token username='admin1@pm.com' password='admin123' grant_type='password'
+curl -u my-client:my-secret -X POST http://localhost:8080/oauth/token -d "username=admin1@pm.com&password=admin123&grant_type=password"
 ```
 
 Regular user:
 ```
 http -a my-client:my-secret --form POST http://localhost:8080/oauth/token username='user1@pm.com' password='user123' grant_type='password'
+curl -u my-client:my-secret -X POST http://localhost:8080/oauth/token -d "username=user1@pm.com&password=user123&grant_type=password"
 ```
 
 You should receive an authentication token in a response. The example below.
@@ -64,6 +66,7 @@ Now, use the access_token to access the REST API.
 
 ```
 http http://localhost:8080/api/hello name=='Seb' access_token=='1bbea46b-93fe-4efa-b25a-eb6d5fac60c0'
+curl -H "Authorization: Bearer 3042da58-918a-4dd8-9c65-e99d81eebf89" http://localhost:8080/api/hello?name=Seb
 ```
 You should see `HTTP/1.1 200` in a response.
 
@@ -71,6 +74,7 @@ You can also list all of the active authentication tokens. It's available only f
 
 ```
 http http://localhost:8080/admin/token/list access_token=='1bbea46b-93fe-4efa-b25a-eb6d5fac60c0'
+curl -H "Authorization: Bearer f94af558-28ba-4fc5-8b64-1f93ffc61225" http://localhost:8080/admin/token/list
 ```
 You should receive a list in a response.
 
@@ -78,6 +82,7 @@ You can also revoke the authentication token using the following endpoint.
 
 ```
 http DELETE http://localhost:8080/oauth/revoke access_token=='1bbea46b-93fe-4efa-b25a-eb6d5fac60c0'
+curl -X DELETE -H "Authorization: Bearer f94af558-28ba-4fc5-8b64-1f93ffc61225" http://localhost:8080/oauth/revoke
 ```
 
 You should see `HTTP/1.1 200` in a response.
